@@ -12,7 +12,7 @@ private:
 
 
     unsigned long m_lastDebounceTime = 0;
-    unsigned long m_debounceTime = 2;
+    unsigned long m_debounceTime = 30;
 public:
     //Constructor
     Button(int unsigned digitalPin) : m_digitalPin(digitalPin)
