@@ -10,6 +10,7 @@ private:
     uint8_t m_buttonState;
     uint8_t m_lastButtonState;
 
+
     unsigned long m_lastDebounceTime = 0;
     unsigned long m_debounceTime = 2;
 public:
@@ -21,6 +22,8 @@ public:
 
     //This function reads the buttons with debounce and returns true/high if pressed.
     bool readButton();
+
+    void toggleParam(bool &param);
 };
 
 

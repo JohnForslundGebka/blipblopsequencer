@@ -17,3 +17,10 @@ bool Button::readButton()
     m_lastButtonState = reading;
     return m_buttonState;
 }
+
+
+void Button::toggleParam(bool &param)
+{
+    if (readButton())
+        param = !param;
+}
