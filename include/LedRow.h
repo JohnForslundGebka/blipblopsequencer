@@ -1,5 +1,4 @@
 //Ledrow.h controls the leds, changing the state of the digital ports to manipulate the flow of current
-
 #ifndef BLIPBLOPSEQUENCER_LEDROW_H
 #define BLIPBLOPSEQUENCER_LEDROW_H
 
@@ -14,10 +13,10 @@ private:
 public:
 
     //default constructor
-    LedRow();
+    LedRow()= default;
 
     //Function that turns on the corresponding LED
-    void led_on(int ledNum);
+    void ledOn(int ledNum);
 
 };
 
