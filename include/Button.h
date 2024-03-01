@@ -14,7 +14,10 @@ private:
     unsigned long m_debounceTime = 2;
 public:
     //Constructor
-    Button(int unsigned digitalPin) : m_digitalPin(digitalPin) {}
+    Button(int unsigned digitalPin) : m_digitalPin(digitalPin)
+    {
+        pinMode(digitalPin, INPUT);
+    }
 
     //This function reads the buttons with debounce and returns true/high if pressed.
     bool readButton();
