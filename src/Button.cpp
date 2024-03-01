@@ -1,5 +1,5 @@
 #include "button.h"
-
+// Function to read the button with debounce
 bool Button::readButton()
 {
     bool reading = digitalRead(m_digitalPin);
