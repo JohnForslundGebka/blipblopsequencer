@@ -2,9 +2,11 @@
 #include "pitches.h"
 #include "buttonLadder.h"
 #include "Button.h"
+#include "LedRow.h"
 
 ButtonLadder buttonLadder(0);
 Button button1(2);
+LedRow leds; //This class uses the digital pins 4,7,8,12
 
 void setup() {
 
@@ -14,7 +16,9 @@ void setup() {
 void loop() {
 
   uint8_t value = buttonLadder.read();
-  Serial.println(button1.readButton());
+
+  leds.ledOn(value);
+
 
   delay(100);
 
