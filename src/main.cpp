@@ -12,7 +12,7 @@ void setup() {
 
 void loop() {
 
-  uint8_t value = buttonLadder.readButtonLadder();
+  uint8_t value = buttonLadder.read();
 
   Serial.println(value);
 

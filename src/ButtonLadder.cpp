@@ -4,7 +4,7 @@
 
 uint8_t ButtonLadder::buttonLadder()
 {
-    //reads value from the resistor ladder, only used privately for the readButtonLadder() function.
+    //reads value from the resistor ladder, only used privately for the read() function.
     int buttonReadValue = analogRead(m_pinNumber);
 
     if (buttonReadValue > 100)
@@ -35,7 +35,7 @@ uint8_t ButtonLadder::buttonLadder()
 }
 
 //Reads the button ladder with debounce and returns the button number. No button pressed returns 0.
-uint8_t ButtonLadder::readButtonLadder()
+uint8_t ButtonLadder::read()
 {
     uint8_t reading = buttonLadder();
 

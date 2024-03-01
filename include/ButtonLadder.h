@@ -24,7 +24,7 @@ public:
     uint8_t buttonLadder();
 
     //Member function that calls the buttonLadder function and cleans the value with a debounce.
-    uint8_t readButtonLadder();
+    uint8_t read();
 
 };
 
