@@ -12,8 +12,8 @@ private:
     const unsigned int m_pinNumber;
     uint8_t m_buttonState = 0;
     uint8_t m_lastButtonState = 0;
-    unsigned long lastDebounceTime;
-    const unsigned long debounceTime = 30;
+    unsigned long m_lastDebounceTime;
+    const unsigned long m_debounceTime = 30;
 
 public:
     //Constructor
