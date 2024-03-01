@@ -9,26 +9,29 @@ uint8_t ButtonLadder::buttonLadder()
 
     if (buttonReadValue > 100)
     {
-        if(buttonReadValue > 100 && buttonReadValue < 250) {
-            return  1;
-        } else if (buttonReadValue > 250 && buttonReadValue < 350) {
-            return  2;
-        } else if (buttonReadValue > 350 && buttonReadValue < 450) {
-            return  3;
-        } else if (buttonReadValue > 450 && buttonReadValue < 550) {
-            return  4;
-        } else if (buttonReadValue > 550 && buttonReadValue < 650) {
-            return  5;
-        } else if (buttonReadValue > 650 && buttonReadValue < 750) {
-            return  6;
-        } else if (buttonReadValue > 750 && buttonReadValue < 850) {
-            return  7;
-        } else if(buttonReadValue > 850) {
-            return  8;
+        if (buttonReadValue > 100)
+        {
+            if(buttonReadValue > 100 && buttonReadValue < 200) {
+                return  1;
+            } else if (buttonReadValue > 200 && buttonReadValue < 300) {
+                return  2;
+            } else if (buttonReadValue > 300 && buttonReadValue < 400) {
+                return  3;
+            } else if (buttonReadValue > 400 && buttonReadValue < 550) {
+                return  4;
+            } else if (buttonReadValue > 550 && buttonReadValue < 700) {
+                return  5;
+            } else if (buttonReadValue > 700 && buttonReadValue < 800) {
+                return  6;
+            } else if (buttonReadValue > 800 && buttonReadValue < 900) {
+                return  7;
+            } else if(buttonReadValue > 850) {
+                return  8;
+            }
         }
+        else
+            return 0;
     }
-    else
-        return 0;
 }
 
 //Reads the button ladder with debounce and returns the button number. No button pressed returns 0.
@@ -50,7 +53,6 @@ uint8_t ButtonLadder::readButtonLadder()
     return m_buttonState;
 }
 
-}
 
 
 
