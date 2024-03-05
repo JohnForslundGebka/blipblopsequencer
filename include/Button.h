@@ -9,11 +9,8 @@ private:
 
     const unsigned int m_digitalPin;
 
-
-
-
     unsigned long m_lastDebounceTime = 0;
-    unsigned long m_debounceTime = 10;
+    const unsigned long m_debounceTime = 10;
 
 
 public:
