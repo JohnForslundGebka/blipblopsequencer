@@ -21,8 +21,29 @@ void setup() {
 
 void loop() {
 
-
     button1.update();
+    buttonLadder.read();
+    uint8_t button;
+
+    // Check if a button was just pressed
+    if (buttonLadder.onPress(button)) {
+        Serial.print("ButtonLadderPress: ");
+        Serial.println(button);
+    }
+
+    // Check if a button is currently being pressed
+    if (buttonLadder.isPressed(button)) {
+        Serial.print("ButtonLadderIsBeingPressed: ");
+        Serial.println(button);
+        delay(100); // Small delay to avoid flooding the serial output
+    }
+
+    // Check if a button was just released
+    if (buttonLadder.onRelease(button)) {
+        Serial.print("ButtonLadderWasReleased: ");
+        Serial.println(button);
+    }
+
 
     if (button1.onPress()) {
         Serial.println("Button Pressed");
@@ -33,7 +54,7 @@ void loop() {
     }
 
     if (button1.isPressed()) {
-        Serial.println("Button is being pressed"); // Uncomment to see continuous press
+        Serial.println("Button is being pressed");
     }
 
 
