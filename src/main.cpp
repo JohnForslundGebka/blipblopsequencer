@@ -21,11 +21,14 @@ void setup() {
 
 void loop() {
 
-   button1.toggleParam(isPlaying);
 
-   if (isPlaying)
-   {
-       seq.play(leds);
-   }
+    int value = buttonLadder.read();
+
+    Serial.println(value);
+
+    delay(50);
+
+
+
 
 }
