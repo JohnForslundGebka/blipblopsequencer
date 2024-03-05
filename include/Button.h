@@ -20,6 +20,9 @@ public:
         pinMode(digitalPin, INPUT);
     }
 
+    //checks the state of the button
+    void update();
+
     //Functions that returns the state of the button
     bool isPressed();
     bool onPress();
