@@ -63,4 +63,14 @@ bool ButtonLadder::onPress(uint8_t &button)
     return false;
 }
 
+bool ButtonLadder::onRelease(uint8_t &button)
+{
+    if (m_releasedButton != 0)
+    {
+        button = m_releasedButton;
+        m_releasedButton = 0;
+        return true;
+    }
+    return false;
+}
 
