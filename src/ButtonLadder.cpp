@@ -50,6 +50,17 @@ uint8_t ButtonLadder::read()
     return m_buttonState;
 }
 
-
+//function that detects a buttonpress. Also changed the argument (input value)
+// to the number of the button being pressed
+bool ButtonLadder::onPress(uint8_t &button)
+{
+    if (m_pressedButton != 0)
+    {
+        button = m_pressedButton;
+        m_pressedButton = 0;
+        return true;
+    }
+    return false;
+}
 
 
