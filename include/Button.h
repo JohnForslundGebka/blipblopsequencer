@@ -7,28 +7,24 @@ class Button
 {
 private:
 
+    uint8_t m_staus;
     const unsigned int m_digitalPin;
-
     unsigned long m_lastDebounceTime = 0;
-    const unsigned long m_debounceTime = 10;
+    const unsigned long m_debounceTime = 50;
 
 
 public:
     //Constructor
-    Button(int unsigned digitalPin) : m_digitalPin(digitalPin)
+    Button(int unsigned digitalPin) :m_staus(0), m_digitalPin(digitalPin)
     {
         pinMode(digitalPin, INPUT);
     }
 
-    //This function reads the buttons with debounce and returns true/high if pressed.
-    bool readButton();
-
-    bool readShortPress();
-
+    //Functions that returns the state of the button
+    bool isPressed();
+    bool onPress();
+    bool onRelease();
     void toggleParam(bool &param);
 };
-
-
-
 
 #endif //BLIPBLOPSEQUENCER_BUTTON_H
