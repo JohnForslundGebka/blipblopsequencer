@@ -2,32 +2,33 @@
 
 
 //read the state of the button
-void Button::update() {
+void Button::update()
+{
     bool reading = digitalRead(m_digitalPin);
 
-    //checks if the state of the button has changed since last time it was checked
-    //checks if the second bit is set
+    //if enough time has passed
+    if ((millis() - m_lastDebounceTime) > m_debounceTime)
+    {
+        // Check if the button state has changed from the last stable state
+        if (reading != (m_status & 1))
+        {
+            m_lastDebounceTime = millis(); // Reset the debounce timer
 
-
-    //debounce logic
-    if ((millis() - m_lastDebounceTime) > m_debounceTime) {                  //this checks if the first bit is set
-        if (reading != ((m_status & (1 << 0)) != 0)) {
-            //set the first bit to the same value as reading
+            // Update the stable state (first bit) to the current reading
             m_status = (m_status & ~(1 << 0)) | (reading << 0);
 
-            //button state has changed, aka check if the first bit is 1
-            if (((m_status & (1 << 0)) != 0)) {
-                m_status |= (1 << 2); //set the third bit to 1
-                m_toggleState = !m_toggleState;
+            // Now, detect the specific transitions
+            if (reading)
+            {
+                // Transition from not pressed to pressed
+                m_status |= (1 << 2); // Set the onPress flag (third bit)
             } else {
-                m_status |= (1 << 3); //set the fourth bit to 1
+                // Transition from pressed to not pressed
+                m_status |= (1 << 3); // Set the onRelease flag (fourth bit)
             }
         }
     }
-    m_status = (m_status & ~(1 << 1)) | (reading << 0);
 }
-
-
 
 bool Button::isPressed() {return ((m_status & (1 << 0)) != 0); }
 
@@ -54,16 +55,10 @@ bool Button::onRelease()
 
 
 
+void Button::toggleParam(bool &param)
+{
+    bool hasButtonBeenPressed = isPressed();
 
-
-
-
-
-
-//void Button::toggleParam(bool &param)
-//{
-//    bool isButtonPressed = readShortPress();
-//
-//    if (isButtonPressed)
-//        param = !param;
-//}
+    if (hasButtonBeenPressed)
+        param = !param;
+}
