@@ -35,7 +35,6 @@ void loop() {
     if (buttonLadder.isPressed(button)) {
         Serial.print("ButtonLadderIsBeingPressed: ");
         Serial.println(button);
-        delay(100); // Small delay to avoid flooding the serial output
     }
 
     // Check if a button was just released
