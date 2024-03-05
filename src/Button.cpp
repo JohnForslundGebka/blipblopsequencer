@@ -22,6 +22,7 @@ void Button::update()
             {
                 // Transition from not pressed to pressed
                 m_status |= (1 << 2); // Set the onPress flag (third bit)
+                m_toggleState = !m_toggleState;
             } else {
                 // Transition from pressed to not pressed
                 m_status |= (1 << 3); // Set the onRelease flag (fourth bit)
@@ -51,14 +52,4 @@ bool Button::onRelease()
         return true;
     }
     return false;
-}
-
-
-
-void Button::toggleParam(bool &param)
-{
-    bool hasButtonBeenPressed = isPressed();
-
-    if (hasButtonBeenPressed)
-        param = !param;
 }

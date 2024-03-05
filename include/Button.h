@@ -12,7 +12,7 @@ private:
     unsigned long m_lastDebounceTime = 0;
     const unsigned long m_debounceTime = 50;
 
-    bool m_toggleState = false;
+
 
 
 public:
@@ -29,7 +29,8 @@ public:
     bool isPressed();
     bool onPress();
     bool onRelease();
-    void toggleParam(bool &param);
+
+    bool m_toggleState = false;
 };
 
 #endif //BLIPBLOPSEQUENCER_BUTTON_H
