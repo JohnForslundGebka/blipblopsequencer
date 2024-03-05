@@ -24,18 +24,28 @@ uint8_t ButtonLadder::buttonLadder()
 //Reads the button ladder with debounce and returns the button number. No button pressed returns 0.
 uint8_t ButtonLadder::read()
 {
-    uint8_t reading = buttonLadder();
+   uint8_t reading = buttonLadder();
 
-    if (reading != m_lastButtonState){
-        m_lastDebounceTime = millis();
-    }
-
-    if ((millis() - m_lastDebounceTime) > m_debounceTime) {
-        if (reading != m_buttonState) {
+    if ((millis() - m_lastDebounceTime) > m_debounceTime)
+    {
+        if (reading != m_buttonState)
+        {
+            m_lastDebounceTime = millis();
+            // Update last state to current state before changing
+            m_lastButtonState = m_buttonState;
             m_buttonState = reading;
+
+            if (reading != 0)
+            {
+                m_pressedButton = reading;
+            } else
+            {
+                m_releasedButton = m_lastButtonState;
+            }
         }
     }
 
+    // Reset lastButtonState to current reading for next cycle
     m_lastButtonState = reading;
     return m_buttonState;
 }
