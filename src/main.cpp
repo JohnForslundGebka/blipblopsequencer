@@ -56,7 +56,11 @@ void loop() {
         Serial.println("Button is being pressed");
     }
 
-
+   //
+   // i button finns en bool som heter m_toggleState. Den ändras varje gång knappen trycks ner.
+   //  så här i main hade man tex kunnat skriva
+   //  isPlaying = button1.m_toggleState;
+   //
 
 
 }
