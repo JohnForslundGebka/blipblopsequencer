@@ -74,3 +74,11 @@ bool ButtonLadder::onRelease(uint8_t &button)
     return false;
 }
 
+bool ButtonLadder::isPressed(uint8_t &button)
+{
+    if (m_buttonState != 0) {
+        button = m_buttonState; // Return the button number being pressed
+        return true;
+    }
+    return false;
+}
