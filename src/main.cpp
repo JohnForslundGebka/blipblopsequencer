@@ -22,11 +22,19 @@ void setup() {
 void loop() {
 
 
-    int value = buttonLadder.read();
+    button1.update();
 
-    Serial.println(value);
+    if (button1.onPress()) {
+        Serial.println("Button Pressed");
+    }
 
-    delay(50);
+    if (button1.onRelease()) {
+        Serial.println("Button Released");
+    }
+
+    if (button1.isPressed()) {
+        Serial.println("Button is being pressed"); // Uncomment to see continuous press
+    }
 
 
 

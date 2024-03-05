@@ -7,15 +7,17 @@ class Button
 {
 private:
 
-    uint8_t m_staus;
+    uint8_t m_status;
     const unsigned int m_digitalPin;
     unsigned long m_lastDebounceTime = 0;
     const unsigned long m_debounceTime = 50;
 
+    bool m_toggleState = false;
+
 
 public:
     //Constructor
-    Button(int unsigned digitalPin) :m_staus(0), m_digitalPin(digitalPin)
+    Button(int unsigned digitalPin) :m_status(0), m_digitalPin(digitalPin)
     {
         pinMode(digitalPin, INPUT);
     }
