@@ -20,3 +20,13 @@ void Sequencer::play(LedRow &leds)
 
 
 }
+
+
+void Sequencer::rec()
+{
+
+    while (true)
+    {
+
+    }
+}
