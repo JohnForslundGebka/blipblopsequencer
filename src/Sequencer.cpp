@@ -6,10 +6,13 @@ void Sequencer::play()
 {
       m_nowTime = millis();
 
+
+
       if(m_nowTime - m_lastTime >= m_tempo)
       {
           m_lastTime = millis();
           tone(BUZZER, m_currentSeq[m_stepCount],200);
+
           m_components.leds.ledOn(m_stepCount);
           m_stepCount++;
 
@@ -31,6 +34,7 @@ void Sequencer::rec()
     {
         m_components.buttonLadder.read();
         buttonWasReleased = m_components.buttonLadder.onRelease(buttontest);
+        m_components.leds.ledOn(8);
 
     }
 
@@ -38,11 +42,9 @@ void Sequencer::rec()
 
        while (stepCount <= 7)
        {
-           int reading = m_components.stateMachine.handleButtonPress();
            uint8_t button;
-           // m_components.button1.update();
            m_components.buttonLadder.read();
-           m_components.leds.ledOn(stepCount);
+           m_components.leds.ledOn(stepCount,8);
 
 
                if (m_components.buttonLadder.onPress(button)) {
@@ -50,7 +52,9 @@ void Sequencer::rec()
                    tone(BUZZER, m_scale[button], 200);
                    stepCount++;
                }
-
        }
+
+    m_components.leds.ledOn(13);
+
 
 }
