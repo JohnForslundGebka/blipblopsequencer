@@ -11,7 +11,7 @@ void Sequencer::play()
       if(m_nowTime - m_lastTime >= m_tempo)
       {
           m_lastTime = millis();
-          tone(BUZZER, m_scale[m_currentSeq[m_stepCount]],200);
+          tone(BUZZER, m_scales[m_currentScale][m_currentSeq[m_stepCount]],200);
 
           m_components.leds.ledOn(m_stepCount);
           m_stepCount++;
@@ -49,7 +49,7 @@ void Sequencer::rec()
 
                if (m_components.buttonLadder.onPress(button)) {
                    m_currentSeq[stepCount] = button;
-                   tone(BUZZER, m_scale[button], 200);
+                   tone(BUZZER, m_scales[m_currentScale][button], 200);
                    stepCount++;
                }
        }

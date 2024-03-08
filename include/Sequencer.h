@@ -18,14 +18,24 @@ private:
 
 
 public:
-
+    int m_currentScale = 3;
     Sequencer(HardwareComponents &comp): m_components(comp){}
 
     //starts the sequencer
     void play();
 
     int m_currentSeq[8]{2,5,6,1,3,3,0,0};
-    int m_scale[7] = {NOTE_FS4,NOTE_A4,NOTE_CS4,NOTE_E5,NOTE_GS5,NOTE_FS5,NOTE_CS5};
+
+    int m_scales[4][7] = {
+            // A Aeolian (Natural Minor): A, B, C, D, E, F, G
+            {NOTE_A4, NOTE_B4, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_G5},
+            // E Dorian: E, F#, G, A, B, C#, D
+            {NOTE_E4, NOTE_FS4, NOTE_G4, NOTE_A4, NOTE_B4, NOTE_CS5, NOTE_D5},
+            // D Phrygian: D, Eb, F, G, A, Bb, C
+            {NOTE_D4, NOTE_DS4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_AS4, NOTE_C5},
+            // C Harmonic Minor: C, D, Eb, F, G, Ab, B
+            {NOTE_C4, NOTE_D4, NOTE_DS4, NOTE_F4, NOTE_G4, NOTE_GS4, NOTE_B4}
+    };
 
     void rec();
 

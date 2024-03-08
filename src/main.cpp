@@ -27,7 +27,6 @@ void loop() {
     int reading = components.stateMachine.handleButtonPress();
 
 
-
     if(SHIFT_SHORT_PRESS == reading) {
         isPlaying = !isPlaying;
         seq.resetStepCounter();
@@ -35,7 +34,7 @@ void loop() {
     }
 
     if(reading > 0 && reading < 9) {
-        tone(13, seq.m_scale[reading - 1], 100);
+        tone(13, seq.m_scales[seq.m_currentScale][reading - 1], 100);
     }
 
     if (isPlaying) {
