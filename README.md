@@ -15,7 +15,7 @@ To clone and run program follow these set up steps:
 The Sequencer is set up to use one of the buttons in combination with the other. 
 
 ### button_layout
-![button_layout](./assets/button_layout.jpeg)
+![button_layout](./assets/button_layout.jpg)
 
 
 ### functionality
