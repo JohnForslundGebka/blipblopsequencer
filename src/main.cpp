@@ -13,8 +13,10 @@ Button button1(2);
 LedRow leds; //This class uses the digital pins 4,7,8,12
 Sequencer seq;
 ButtonStateMachine stateMachine;
-
 bool isPlaying = false;
+
+#define SHIFT_SHORT_PRESS 30
+
 
 void setup() {
 
@@ -23,35 +25,25 @@ void setup() {
 
 void loop() {
 
+    button1.update();
+    buttonLadder.read();
     uint8_t button;
     int reading = stateMachine.handleButtonPress();
 
-    button1.update();
-    buttonLadder.read();
-
-
-    if(reading==9)
+    if(SHIFT_SHORT_PRESS==reading)
     {
-        //sak som ska hända
+        isPlaying = !isPlaying;
     }
 
-    if(reading==2)
+    if(reading > 0 && reading < 9)
     {
-        //något annat händer
-    }
-
-    if (buttonLadder.onRelease(button))
-    {
-
+        tone(13,seq.m_scale[reading-1],100);
     }
 
 
-    if(button1.isPressed()&&buttonLadder.onRelease(button))
+    if (isPlaying)
     {
-
+        seq.play(leds);
     }
-
-
-
 
 }
