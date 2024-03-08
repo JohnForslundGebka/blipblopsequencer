@@ -58,3 +58,9 @@ void Sequencer::rec()
 
 
 }
+
+
+void Sequencer::readPot1()
+{
+  m_currentScale = map(analogRead(1),0,1023,0,3);
+}

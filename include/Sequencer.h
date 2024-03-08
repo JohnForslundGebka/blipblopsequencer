@@ -24,7 +24,7 @@ public:
     //starts the sequencer
     void play();
 
-    int m_currentSeq[8]{2,5,6,1,3,3,0,0};
+    int m_currentSeq[8]{0,1,2,3,4,5,6,7};
 
     int m_scales[4][7] = {
             // A Aeolian (Natural Minor): A, B, C, D, E, F, G
@@ -40,6 +40,8 @@ public:
     void rec();
 
     void resetStepCounter() {m_stepCount = 0;}
+
+    void readPot1();
 
 };
 

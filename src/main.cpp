@@ -18,11 +18,12 @@ void setup() {
 
 void loop() {
 
+    seq.readPot1();
     components.button1.update();
     components.buttonLadder.read();
     uint8_t button;
 
-
+    components.leds.ledOn(seq.m_currentScale+8);
 
     int reading = components.stateMachine.handleButtonPress();
 
