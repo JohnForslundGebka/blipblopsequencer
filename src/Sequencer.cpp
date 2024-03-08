@@ -62,19 +62,21 @@ void Sequencer::readPot1()
 
 void Sequencer::scaleMode(bool &isPlaying)
 {
-   m_components.leds.ledOn(m_currentScale);
+   m_components.leds.ledOn(m_currentScale,9);
    
     while (true)
     {
-       if(isPlaying) play(false);
+       if(isPlaying)
+           play(false);
        
         int reading = m_components.stateMachine.handleButtonPress();
 
         if(reading > 0 && reading < 9)
         {
             m_currentScale = (reading - 1);
-            m_components.leds.ledOn(m_currentScale);
+
         }
+         m_components.leds.ledOn(m_currentScale,9);
 
         if (reading==15)
             break;
