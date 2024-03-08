@@ -1,63 +1,55 @@
 #include "button.h"
-// Function to read the button with debounce
-bool Button::readButton()
+
+
+//read the state of the button
+void Button::update()
 {
     bool reading = digitalRead(m_digitalPin);
-    bool isValidPress = false;
 
-    if (reading != m_lastButtonState){
-        m_lastDebounceTime = millis();
-    }
-
-    if ((millis() - m_lastDebounceTime) > m_debounceTime) {
-        if (reading != m_buttonState)
+    //if enough time has passed
+    if ((millis() - m_lastDebounceTime) > m_debounceTime)
+    {
+        // Check if the button state has changed from the last stable state
+        if (reading != (m_status & 1))
         {
-            m_buttonState = reading;
-            if(m_buttonState==HIGH)
+            m_lastDebounceTime = millis(); // Reset the debounce timer
+
+            // Update the stable state (first bit) to the current reading
+            m_status = (m_status & ~(1 << 0)) | (reading << 0);
+
+            // Now, detect the specific transitions
+            if (reading)
             {
-                isValidPress = true;
+                // Transition from not pressed to pressed
+                m_status |= (1 << 2); // Set the onPress flag (third bit)
+                m_toggleState = !m_toggleState;
+            } else {
+                // Transition from pressed to not pressed
+                m_status |= (1 << 3); // Set the onRelease flag (fourth bit)
             }
         }
     }
-
-    m_lastButtonState = reading;
-    return isValidPress;
 }
 
-bool Button::readShortPress() {
-    bool reading = digitalRead(m_digitalPin);
+bool Button::isPressed() {return ((m_status & (1 << 0)) != 0); }
 
-    if (reading != m_lastButtonState) {
-        m_lastDebounceTime = millis();
+bool Button::onPress()
+{    //if bit number two is 1
+    if ((m_status & (1 << 2)) != 0)
+    {
+        m_status &= ~(1 << 2); //set the third bit to 0
+        return true;
     }
 
-    if ((millis() - m_lastDebounceTime) > m_debounceTime) {
-        if (reading != m_buttonState) {
-            m_buttonState = reading;
-
-            // Button is pressed
-            if (m_buttonState == HIGH) {
-                m_buttonPressTime = millis();
-            } 
-            // Button is released
-            else {
-                // Check if it was a short press within the specified interval
-                unsigned int pressDuration = millis() - m_buttonPressTime;
-                if (pressDuration >= SHORT_PRESS_MIN && pressDuration <= SHORT_PRESS_MAX) {
-                    return true; // Short press detected
-                }
-            }
-        }
-    }
-
-    m_lastButtonState = reading;
-    return false; // No short press detected
+    return false;
 }
 
-void Button::toggleParam(bool &param)
+bool Button::onRelease()
 {
-    bool isButtonPressed = readShortPress();
-
-    if (isButtonPressed)
-        param = !param;
+    if ((m_status & (1 <<3 )) != 0) //check if the fourth bit is 1
+    {
+        m_status &= ~(1 << 3);
+        return true;
+    }
+    return false;
 }

@@ -14,6 +14,9 @@ private:
     uint8_t m_lastButtonState = 0;
     unsigned long m_lastDebounceTime;
     const unsigned long m_debounceTime = 30;
+    uint8_t m_pressedButton = 0;      // Button that has been pressed
+    uint8_t m_releasedButton = 0;     // Button that has been released
+
 
 public:
     //Constructor
@@ -25,6 +28,10 @@ public:
 
     //Member function that calls the buttonLadder function and cleans the value with a debounce.
     uint8_t read();
+
+    bool onPress(uint8_t &button);
+    bool onRelease(uint8_t &button);
+    bool isPressed(uint8_t &button);
 
 };
 

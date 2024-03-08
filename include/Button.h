@@ -6,34 +6,29 @@
 class Button
 {
 private:
+
+    uint8_t m_status;  // 00000000
     const unsigned int m_digitalPin;
-    uint8_t m_buttonState;
-    uint8_t m_lastButtonState;
-
-
     unsigned long m_lastDebounceTime = 0;
-    unsigned long m_debounceTime = 10;
+    const unsigned long m_debounceTime = 50;
 
-    // Define the interval for a short press
-    const unsigned int SHORT_PRESS_MIN = 10;  // Minimum time for short press in milliseconds
-    const unsigned int SHORT_PRESS_MAX = 400; // Maximum time for short press in milliseconds
-    unsigned int m_buttonPressTime;
+
 public:
     //Constructor
-    Button(int unsigned digitalPin) : m_digitalPin(digitalPin)
+    Button(int unsigned digitalPin) :m_status(0), m_digitalPin(digitalPin)
     {
         pinMode(digitalPin, INPUT);
     }
 
-    //This function reads the buttons with debounce and returns true/high if pressed.
-    bool readButton();
+    //checks the state of the button
+    void update();
 
-    bool readShortPress();
+    //Functions that returns the state of the button
+    bool isPressed();
+    bool onPress();
+    bool onRelease();
 
-    void toggleParam(bool &param);
+    bool m_toggleState = false;
 };
-
-
-
 
 #endif //BLIPBLOPSEQUENCER_BUTTON_H

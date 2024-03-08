@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "pitches.h"
+#include "ButtonStateMachine.h"
 #include "buttonLadder.h"
 #include "Button.h"
 #include "LedRow.h"
@@ -11,6 +12,7 @@ ButtonLadder buttonLadder(0);
 Button button1(2);
 LedRow leds; //This class uses the digital pins 4,7,8,12
 Sequencer seq;
+ButtonStateMachine stateMachine;
 
 bool isPlaying = false;
 
@@ -21,11 +23,35 @@ void setup() {
 
 void loop() {
 
-   button1.toggleParam(isPlaying);
+    uint8_t button;
+    int reading = stateMachine.handleButtonPress();
 
-   if (isPlaying)
-   {
-       seq.play(leds);
-   }
+    button1.update();
+    buttonLadder.read();
+
+
+    if(reading==9)
+    {
+        //sak som ska hända
+    }
+
+    if(reading==2)
+    {
+        //något annat händer
+    }
+
+    if (buttonLadder.onRelease(button))
+    {
+
+    }
+
+
+    if(button1.isPressed()&&buttonLadder.onRelease(button))
+    {
+
+    }
+
+
+
 
 }
