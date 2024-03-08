@@ -18,12 +18,12 @@ void setup() {
 
 void loop() {
 
-    seq.readPot1();
+   // seq.readPot1();
     components.button1.update();
     components.buttonLadder.read();
     uint8_t button;
 
-    components.leds.ledOn(seq.m_currentScale+8);
+  //  components.leds.ledOn(seq.m_currentScale+8);
 
     int reading = components.stateMachine.handleButtonPress();
 
@@ -39,14 +39,16 @@ void loop() {
     }
 
     if (isPlaying) {
-        seq.play();
+        seq.play(true);
     }
 
     if (reading==9)
     {
         components.buttonLadder.read();
         seq.rec();
-
     }
+
+    if (reading==15)
+        seq.scaleMode(isPlaying);
 
 }

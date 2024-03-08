@@ -2,18 +2,15 @@
 #include <Arduino.h>
 
 
-void Sequencer::play()
+void Sequencer::play(bool ledsOn)
 {
       m_nowTime = millis();
-
-
-
       if(m_nowTime - m_lastTime >= m_tempo)
       {
           m_lastTime = millis();
           tone(BUZZER, m_scales[m_currentScale][m_currentSeq[m_stepCount]],200);
 
-          m_components.leds.ledOn(m_stepCount);
+         if(ledsOn) m_components.leds.ledOn(m_stepCount);
           m_stepCount++;
 
           if (m_stepCount==8)
@@ -22,13 +19,12 @@ void Sequencer::play()
       }
 }
 
-
 void Sequencer::rec()
 {
     //counter to keep track of steps
     int stepCount = 0;
     bool buttonWasReleased = false;
-    uint8_t buttontest;
+    uint8_t buttontest;   //dummy-variabel
 
     while (!buttonWasReleased)
     {
@@ -59,8 +55,32 @@ void Sequencer::rec()
 
 }
 
-
 void Sequencer::readPot1()
 {
   m_currentScale = map(analogRead(1),0,1023,0,3);
+}
+
+void Sequencer::scaleMode(bool &isPlaying)
+{
+   m_components.leds.ledOn(m_currentScale);
+   
+    while (true)
+    {
+       if(isPlaying) play(false);
+       
+        int reading = m_components.stateMachine.handleButtonPress();
+
+        if(reading > 0 && reading < 9)
+        {
+            m_currentScale = (reading - 1);
+            m_components.leds.ledOn(m_currentScale);
+        }
+
+        if (reading==15)
+            break;
+
+        if (reading==30)
+            isPlaying = !isPlaying;
+    }
+
 }

@@ -22,7 +22,7 @@ public:
     Sequencer(HardwareComponents &comp): m_components(comp){}
 
     //starts the sequencer
-    void play();
+    void play(bool ledsOn);
 
     int m_currentSeq[8]{0,1,2,3,4,5,6,7};
 
@@ -42,6 +42,8 @@ public:
     void resetStepCounter() {m_stepCount = 0;}
 
     void readPot1();
+
+    void scaleMode(bool &isPlaying);
 
 };
 
