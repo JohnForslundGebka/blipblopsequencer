@@ -24,11 +24,32 @@ void setup() {
 void loop() {
 
     uint8_t button;
-    stateMachine.handleButtonPress();
+    int reading = stateMachine.handleButtonPress();
+
     button1.update();
     buttonLadder.read();
 
 
+    if(reading==9)
+    {
+        //sak som ska hända
+    }
+
+    if(reading==2)
+    {
+        //något annat händer
+    }
+
+    if (buttonLadder.onRelease(button))
+    {
+
+    }
+
+
+    if(button1.isPressed()&&buttonLadder.onRelease(button))
+    {
+
+    }
 
 
 
