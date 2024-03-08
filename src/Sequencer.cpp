@@ -13,8 +13,8 @@ void Sequencer::play()
           m_components.leds.ledOn(m_stepCount);
           m_stepCount++;
 
-          if (m_stepCount==9)
-              m_stepCount = 1;
+          if (m_stepCount==8)
+              m_stepCount = 0;
 
       }
 }
@@ -22,11 +22,35 @@ void Sequencer::play()
 
 void Sequencer::rec()
 {
+    //counter to keep track of steps
+    int stepCount = 0;
+    bool buttonWasReleased = false;
+    uint8_t buttontest;
 
-    while (true)
+    while (!buttonWasReleased)
     {
-        m_components.button1.update();
         m_components.buttonLadder.read();
+        buttonWasReleased = m_components.buttonLadder.onRelease(buttontest);
 
     }
+
+       m_components.buttonLadder.m_pressedButton = 0;
+
+       while (stepCount <= 7)
+       {
+           int reading = m_components.stateMachine.handleButtonPress();
+           uint8_t button;
+           // m_components.button1.update();
+           m_components.buttonLadder.read();
+           m_components.leds.ledOn(stepCount);
+
+
+               if (m_components.buttonLadder.onPress(button)) {
+                   m_currentSeq[stepCount] = m_scale[button];
+                   tone(BUZZER, m_scale[button], 200);
+                   stepCount++;
+               }
+
+       }
+
 }

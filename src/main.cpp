@@ -24,10 +24,12 @@ void loop() {
 
     int reading = components.stateMachine.handleButtonPress();
 
-    Serial.println(reading);
+
 
     if(SHIFT_SHORT_PRESS == reading) {
         isPlaying = !isPlaying;
+        seq.resetStepCounter();
+
     }
 
     if(reading > 0 && reading < 9) {
@@ -36,6 +38,13 @@ void loop() {
 
     if (isPlaying) {
         seq.play();
+    }
+
+    if (reading==9)
+    {
+        components.buttonLadder.read();
+        seq.rec();
+
     }
 
 }

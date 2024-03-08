@@ -29,6 +29,8 @@ public:
 
     void rec();
 
+    void resetStepCounter() {m_stepCount = 0;}
+
 };
 
 #endif //BLIPBLOPSEQUENCER_SEQUENCER_H
