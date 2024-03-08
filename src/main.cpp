@@ -18,10 +18,10 @@ void setup() {
 
 void loop() {
 
-    // Correct syntax to access and use the members
     components.button1.update();
     components.buttonLadder.read();
     uint8_t button;
+
     int reading = components.stateMachine.handleButtonPress();
 
     Serial.println(reading);
@@ -38,5 +38,4 @@ void loop() {
         seq.play();
     }
 
-  //  seq.rec();
 }

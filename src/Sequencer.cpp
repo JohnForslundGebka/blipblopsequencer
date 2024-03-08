@@ -17,8 +17,6 @@ void Sequencer::play()
               m_stepCount = 1;
 
       }
-
-
 }
 
 
@@ -27,6 +25,8 @@ void Sequencer::rec()
 
     while (true)
     {
+        m_components.button1.update();
+        m_components.buttonLadder.read();
 
     }
 }
