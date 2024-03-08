@@ -130,3 +130,16 @@ void LedRow::ledOn(int ledNum)
     };
 
 }
+
+
+void LedRow::ledOn(int led1, int led2) {
+    flickerTime = millis();
+    if (flickerTime - lastFlickerTime > flickerDelay) {
+        if (toggleActiveLed)
+            ledOn(led1);
+        else
+            ledOn(led2);
+        lastFlickerTime = flickerTime;
+        toggleActiveLed = !toggleActiveLed;
+    }
+}

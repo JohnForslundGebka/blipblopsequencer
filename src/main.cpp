@@ -22,6 +22,8 @@ void loop() {
     components.buttonLadder.read();
     uint8_t button;
 
+
+
     int reading = components.stateMachine.handleButtonPress();
 
 
