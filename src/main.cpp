@@ -1,26 +1,14 @@
 #include <Arduino.h>
 #include "pitches.h"
-#include "ButtonStateMachine.h"
-#include "buttonLadder.h"
-#include "Button.h"
-#include "LedRow.h"
 #include "Sequencer.h"
+#include "HardwareComponents.h"
 
-
-Sequencer seq;
 bool isPlaying = false;
 
 #define SHIFT_SHORT_PRESS 30
 
-struct HardwareComponents {
-    ButtonLadder buttonLadder;
-    Button button1;
-    LedRow leds; // Uses digital pins 4,7,8,12
-    ButtonStateMachine stateMachine;
-
-    // Constructor to initialize members
-    HardwareComponents() : buttonLadder(0), button1(2) {}
-};
+HardwareComponents components;
+Sequencer seq(components);
 
 
 void setup() {
@@ -29,13 +17,14 @@ void setup() {
 }
 
 void loop() {
-    HardwareComponents components;
 
     // Correct syntax to access and use the members
     components.button1.update();
     components.buttonLadder.read();
     uint8_t button;
     int reading = components.stateMachine.handleButtonPress();
+
+    Serial.println(reading);
 
     if(SHIFT_SHORT_PRESS == reading) {
         isPlaying = !isPlaying;
@@ -46,6 +35,8 @@ void loop() {
     }
 
     if (isPlaying) {
-        seq.play(components.leds);
+        seq.play();
     }
+
+  //  seq.rec();
 }

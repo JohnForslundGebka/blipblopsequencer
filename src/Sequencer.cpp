@@ -2,7 +2,7 @@
 #include <Arduino.h>
 
 
-void Sequencer::play(LedRow &leds)
+void Sequencer::play()
 {
       m_nowTime = millis();
 
@@ -10,7 +10,7 @@ void Sequencer::play(LedRow &leds)
       {
           m_lastTime = millis();
           tone(BUZZER, m_currentSeq[m_stepCount],200);
-          leds.ledOn(m_stepCount);
+          m_components.leds.ledOn(m_stepCount);
           m_stepCount++;
 
           if (m_stepCount==9)
