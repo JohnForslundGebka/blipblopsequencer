@@ -1,7 +1,7 @@
 //State machine class for handling combinations of button presses.
 #include <Arduino.h>
 #include <ButtonLadder.h>
-class ButtonHandler {
+class ButtonStateMachine {
 public:
     //This variables is the pin number of the play/shift button.
     int m_shiftButtonPin = 2;
@@ -22,7 +22,7 @@ public:
     unsigned long pressStartTime = 0; //Timer for press time.
 
     // Constructor with member initializer list
-    ButtonHandler() : buttonLadder(0) {}
+    ButtonStateMachine() : buttonLadder(0) {}
 
     uint8_t handleButtonPress() {
         int shiftButtonState = digitalRead(m_shiftButtonPin);

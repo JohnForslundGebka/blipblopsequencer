@@ -7,12 +7,10 @@ class Button
 {
 private:
 
-    uint8_t m_status;
+    uint8_t m_status;  // 00000000
     const unsigned int m_digitalPin;
     unsigned long m_lastDebounceTime = 0;
     const unsigned long m_debounceTime = 50;
-
-
 
 
 public:
