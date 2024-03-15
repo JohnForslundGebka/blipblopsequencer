@@ -7,7 +7,9 @@ bool isPlaying = false;
 
 #define SHIFT_SHORT_PRESS 30
 #define RECORDING_MODE 9
+#define DELETE_MODE 10
 #define SCALE_MODE 15
+
 
 HardwareComponents components;
 Sequencer seq(components);
@@ -51,5 +53,8 @@ void loop() {
 
     if (reading==SCALE_MODE)
         seq.scaleMode(isPlaying);
+
+    if (reading == DELETE_MODE)
+        seq.deleteMode();
 
 }
