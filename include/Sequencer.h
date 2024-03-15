@@ -51,6 +51,7 @@ public:
 
     void scaleMode(bool &isPlaying);
 
+
 };
 
 #endif //BLIPBLOPSEQUENCER_SEQUENCER_H

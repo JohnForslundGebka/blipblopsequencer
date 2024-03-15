@@ -25,35 +25,37 @@ void Sequencer::rec()
     //counter to keep track of steps
     int stepCount = 0;
     bool buttonWasReleased = false;
-    uint8_t buttontest;   //dummy-variabel
+    uint8_t dummy;   //dummy-variabel
 
+    //loop that runs until the button is released
+    //this is the stop the program from setting the first steps of the sequencer by itself
     while (!buttonWasReleased)
     {
         m_components.buttonLadder.read();
-        buttonWasReleased = m_components.buttonLadder.onRelease(buttontest);
+        buttonWasReleased = m_components.buttonLadder.onRelease(dummy);
         m_components.leds.ledOn(8);
 
     }
 
-       m_components.buttonLadder.m_pressedButton = 0;
-
+       m_components.buttonLadder.m_pressedButton = 0; //manually sets the button to not pressed
 
        while (stepCount <= 7)
        {
            uint8_t button;
+           //read the status of the buttons
            m_components.buttonLadder.read();
            m_components.leds.ledOn(stepCount,8);
 
-               if (m_components.buttonLadder.onPress(button)) {
-                   m_currentSeq[stepCount] = button;
-                   tone(BUZZER, m_scales[m_currentScale][button], 200);
+               if (m_components.buttonLadder.onPress(button))
+               {
+                   m_currentSeq[stepCount] = button; //set the current seq the  value of the button (1-7)
+                   tone(BUZZER, m_scales[m_currentScale][button], 200); //play the note
                    stepCount++;
-                  // m_components.buttonLadder.resetFlags();
+                   delay(100);
                }
        }
 
-    m_components.leds.ledOn(13);
-
+    m_components.leds.ledOn(13);  //Set all the LEDS to off
 
 }
 
@@ -88,3 +90,4 @@ void Sequencer::scaleMode(bool &isPlaying)
     }
 
 }
+
