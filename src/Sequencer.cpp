@@ -37,17 +37,18 @@ void Sequencer::rec()
 
        m_components.buttonLadder.m_pressedButton = 0;
 
+
        while (stepCount <= 7)
        {
            uint8_t button;
            m_components.buttonLadder.read();
            m_components.leds.ledOn(stepCount,8);
 
-
                if (m_components.buttonLadder.onPress(button)) {
                    m_currentSeq[stepCount] = button;
                    tone(BUZZER, m_scales[m_currentScale][button], 200);
                    stepCount++;
+                  // m_components.buttonLadder.resetFlags();
                }
        }
 
