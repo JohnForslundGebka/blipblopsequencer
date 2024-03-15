@@ -27,21 +27,21 @@ public:
 
     int m_currentSeq[8]{0,1,2,3,4,5,6,7};
 
-    int m_scales[7][7] = {
+    int m_scales[7][8] = {
             // C Major: C, D, E, F, G, A, B
-            {NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4},
+            {NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4,0},
             // G Major: G, A, B, C, D, E, F#
-            {NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_FS5},
+            {NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_FS5,0},
             // D Minor (Natural): D, E, F, G, A, Bb, C
-            {NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_AS4, NOTE_C5},
+            {NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_AS4, NOTE_C5,0},
             // A Harmonic Minor: A, B, C, D, E, F, G#
-            {NOTE_A4, NOTE_B4, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_GS5},
+            {NOTE_A4, NOTE_B4, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_GS5,0},
             // E Phrygian: E, F, G, A, B, C, D
-            {NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5, NOTE_D5},
+            {NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5, NOTE_D5,0},
             // Bb Melodic Minor (Ascending): Bb, C, Db, Eb, F, G, A
-            {NOTE_AS4, NOTE_C5, NOTE_CS5, NOTE_DS5, NOTE_F5, NOTE_G5, NOTE_A5},
+            {NOTE_AS4, NOTE_C5, NOTE_CS5, NOTE_DS5, NOTE_F5, NOTE_G5, NOTE_A5,0},
             // F# Mixolydian: F#, G#, A#, B, C#, D#, E
-            {NOTE_FS4, NOTE_GS4, NOTE_AS4, NOTE_B4, NOTE_CS5, NOTE_DS5, NOTE_E5},
+            {NOTE_FS4, NOTE_GS4, NOTE_AS4, NOTE_B4, NOTE_CS5, NOTE_DS5, NOTE_E5,0},
     };
 
     void rec();
