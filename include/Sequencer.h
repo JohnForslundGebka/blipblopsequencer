@@ -50,6 +50,8 @@ public:
 
     void scaleMode(bool &isPlaying);
 
+    void deleteMode();
+
 };
 
 #endif //BLIPBLOPSEQUENCER_SEQUENCER_H
