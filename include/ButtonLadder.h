@@ -36,6 +36,14 @@ public:
     uint8_t m_buttonState = 0;
     uint8_t m_pressedButton = 0;
 
+    //function that resets all the status flags
+    void resetFlags()
+    {
+        m_pressedButton = 0;
+        m_releasedButton = 0;
+        m_buttonState = 0;
+    }
+
 };
 
 

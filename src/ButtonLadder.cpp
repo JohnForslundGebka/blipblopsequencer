@@ -8,6 +8,7 @@ uint8_t ButtonLadder::buttonLadder()
     int buttonReadValue = analogRead(m_pinNumber);
 
 
+
     if (buttonReadValue > 100) {
         if (buttonReadValue < 200) return 1;
         else if (buttonReadValue < 300) return 2;
