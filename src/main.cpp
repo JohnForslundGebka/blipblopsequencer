@@ -6,6 +6,8 @@
 bool isPlaying = false;
 
 #define SHIFT_SHORT_PRESS 30
+#define RECORDING_MODE 9
+#define SCALE_MODE 15
 
 HardwareComponents components;
 Sequencer seq(components);
@@ -18,22 +20,20 @@ void setup() {
 
 void loop() {
 
-   // seq.readPot1();
     components.button1.update();
     components.buttonLadder.read();
     uint8_t button;
 
-  //  components.leds.ledOn(seq.m_currentScale+8);
-
     int reading = components.stateMachine.handleButtonPress();
 
 
-    if(SHIFT_SHORT_PRESS == reading) {
+    if(reading==SHIFT_SHORT_PRESS) {
         isPlaying = !isPlaying;
         seq.resetStepCounter();
 
     }
 
+    //play a tone when pressing a button in the buttonLadder
     if(reading > 0 && reading < 9) {
         tone(13, seq.m_scales[seq.m_currentScale][reading - 1], 100);
     }
@@ -42,13 +42,13 @@ void loop() {
         seq.play(true);
     }
 
-    if (reading==9)
+    if (reading==RECORDING_MODE)
     {
         components.buttonLadder.read();
         seq.rec();
     }
 
-    if (reading==15)
+    if (reading==SCALE_MODE)
         seq.scaleMode(isPlaying);
 
 }
