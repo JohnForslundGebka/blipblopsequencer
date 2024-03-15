@@ -29,6 +29,7 @@ void loop() {
 
     if(reading==SHIFT_SHORT_PRESS) {
         isPlaying = !isPlaying;
+        components.leds.ledOn(13);
         seq.resetStepCounter();
 
     }

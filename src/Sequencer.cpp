@@ -62,7 +62,6 @@ void Sequencer::rec()
 
 }
 
-
 void Sequencer::scaleMode(bool &isPlaying)
 {
     uint8_t blueLed = 9;
