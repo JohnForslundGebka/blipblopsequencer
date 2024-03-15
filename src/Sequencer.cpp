@@ -44,18 +44,28 @@ void Sequencer::rec()
 
        while (stepCount <= 7)
        {
-           uint8_t button;
-           //read the status of the buttons
-           m_components.buttonLadder.read();
-           m_components.leds.ledOn(stepCount,8);
+            uint8_t button;
+            //read the status of the buttons
+            m_components.buttonLadder.read();
+            m_components.leds.ledOn(stepCount,8);
 
-               if (m_components.buttonLadder.onPress(button))
-               {
-                   m_currentSeq[stepCount] = button; //set the current seq the  value of the button (1-7)
-                   tone(BUZZER, m_scales[m_currentScale][button], 200); //play the note
-                   stepCount++;
-                   delay(100);
-               }
+            int reading = m_components.stateMachine.handleButtonPress();
+            
+            if (reading == 10) 
+            {
+                m_currentSeq[stepCount] = 7;
+                stepCount++;
+                delay(100);
+                m_components.buttonLadder.m_pressedButton = 0; //manually sets the button to not pressed    
+            }
+            else if (m_components.buttonLadder.onPress(button) && reading > 0 && reading < 9)
+            {
+                m_currentSeq[stepCount] = button; //set the current seq the  value of the button (1-7)
+                tone(BUZZER, m_scales[m_currentScale][button], 200); //play the note
+                stepCount++;
+                delay(100);
+            }
+
        }
 
     m_components.leds.ledOn(13);  //Set all the LEDS to off
