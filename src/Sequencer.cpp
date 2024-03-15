@@ -5,7 +5,9 @@
 void Sequencer::play(bool ledsOn)
 {
       m_tempo = map(analogRead(1), 0, 1023, 1000, 30); //Read pot 1 and sets tempo  
-      m_noteLength = map(analogRead(2), 0, 1023, 1000, 20); //Read pot 1 and sets tempo  
+
+      m_noteLength = map(analogRead(2), 0, 1023, 1000, 20); //Read pot 2 and sets note length 
+
       m_nowTime = millis();
       if(m_nowTime - m_lastTime >= m_tempo)
       {
