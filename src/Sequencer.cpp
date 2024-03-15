@@ -62,30 +62,57 @@ void Sequencer::rec()
 
 }
 
+void Sequencer::readPot1()
+{
+  m_currentScale = map(analogRead(1),0,1023,0,3);
+}
+
+
 void Sequencer::scaleMode(bool &isPlaying)
 {
-   m_components.leds.ledOn(m_currentScale,9);
-   
+    uint8_t blueLed = 9;
+    //initial turn on leds (uses the currently set scale and the blue led)
+    m_components.leds.ledOn(m_currentScale, blueLed);
+    // inits reading as 0 (meaning no buttons pressed)
+    int reading = 0;
+    //counter to stop user/program from registering reading from button to fast
+    unsigned int counter = 1;
+
+
     while (true)
     {
-       if(isPlaying)
-           play(false);
-       
-        int reading = m_components.stateMachine.handleButtonPress();
+        //sets reading as currently pressed button on ladder
+        reading = m_components.stateMachine.handleButtonPress();
+        counter++;
 
+        //sets play funtion to play current sequence without turning on leds 
+        if(isPlaying)
+           play(false);
+
+        //sets current scale to pressed button
         if(reading > 0 && reading < 9)
         {
             m_currentScale = (reading - 1);
-
         }
-         m_components.leds.ledOn(m_currentScale,9);
 
-        if (reading==15)
+        //turns on correct led from scale (and blue led)
+        m_components.leds.ledOn(m_currentScale, blueLed);
+        
+        //if shift+ladder7 is pressed, turns off leds and break
+        if (reading == 15 && counter > 5)
+        {
+            m_components.leds.ledOn(13);
             break;
+        }
 
-        if (reading==30)
+        //plays sequence if shift key is pressed
+        if (reading == 30)
+        {
             isPlaying = !isPlaying;
-    }
+        }
 
+
+        reading = 0;
+    }
 }
 
