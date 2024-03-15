@@ -121,4 +121,5 @@ void Sequencer::deleteMode()
         buzz = buzz - 100;
         delay(150);
     }
+    m_components.leds.ledOn(13);
 }
