@@ -110,3 +110,16 @@ void Sequencer::scaleMode(bool &isPlaying)
     }
 }
 
+//function the clears the current sequence
+void Sequencer::deleteMode()
+{
+    int buzz = 1000;
+    for(int i = 0; i < 8; i++) {
+        m_currentSeq[i] = 0;
+        m_components.leds.ledOn(i);
+        tone(BUZZER, buzz, 100);
+        buzz = buzz - 100;
+        delay(150);
+    }
+    m_components.leds.ledOn(13);
+}
