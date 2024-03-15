@@ -12,8 +12,7 @@ Sequencer seq(components);
 
 
 void setup() {
-
- Serial.begin(9600);
+    Serial.begin(9600);
 }
 
 void loop() {
@@ -27,23 +26,18 @@ void loop() {
 
     int reading = components.stateMachine.handleButtonPress();
 
-
     if(SHIFT_SHORT_PRESS == reading) {
         isPlaying = !isPlaying;
         seq.resetStepCounter();
-
     }
 
-    if(reading > 0 && reading < 9) {
+    if(reading > 0 && reading < 9)
         tone(13, seq.m_scales[seq.m_currentScale][reading - 1], 100);
-    }
 
-    if (isPlaying) {
+    if (isPlaying)
         seq.play(true);
-    }
 
-    if (reading==9)
-    {
+    if (reading==9) {
         components.buttonLadder.read();
         seq.rec();
     }
@@ -51,4 +45,6 @@ void loop() {
     if (reading==15)
         seq.scaleMode(isPlaying);
 
+    if (reading == 10)
+        seq.deleteMode();
 }
