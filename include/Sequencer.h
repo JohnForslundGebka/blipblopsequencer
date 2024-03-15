@@ -42,8 +42,6 @@ public:
 
     void resetStepCounter() {m_stepCount = 0;}
 
-    void readPot1();
-
     void scaleMode(bool &isPlaying);
 
 };
