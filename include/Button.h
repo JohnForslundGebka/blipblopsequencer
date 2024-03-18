@@ -1,4 +1,7 @@
-//This headerfile contains a class for the play button
+//button.h
+//This header file contains the Class Button.
+//It reads the status of the shift button and updates the corresponding bit (isPressed, onRelease and so on)
+//it also includes a function for debouncing to protect from irregular reading
 #ifndef BLIPBLOPSEQUENCER_BUTTON_H
 #define BLIPBLOPSEQUENCER_BUTTON_H
 #include <Arduino.h>
@@ -7,6 +10,7 @@ class Button
 {
 private:
 
+    //member variables
     uint8_t m_status;  // 00000000
     const unsigned int m_digitalPin;
     unsigned long m_lastDebounceTime = 0;

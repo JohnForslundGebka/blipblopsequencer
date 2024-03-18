@@ -5,6 +5,7 @@
 #include "Button.h"
 #include "LedRow.h"
 
+//struct that contains all the instances of the classes being used
 struct HardwareComponents {
     ButtonLadder buttonLadder;
     Button button1;

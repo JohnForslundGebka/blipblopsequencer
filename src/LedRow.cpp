@@ -1,10 +1,8 @@
-//
-// Created by John Jakobsson forslund on 2024-03-01.
-//
 #include "LedRow.h"
 #include <Arduino.h>
 
-
+//Function that turns on the corresponding led on the sequencer. Has an int value as an argument that represents which LED turns on
+//If argument is 13 all LEDS turn off
 void LedRow::ledOn(int ledNum)
 {
     switch (ledNum) {
@@ -131,7 +129,7 @@ void LedRow::ledOn(int ledNum)
 
 }
 
-
+//overloaded function that turns on two LEDS
 void LedRow::ledOn(int led1, int led2) {
     flickerTime = millis();
     if (flickerTime - lastFlickerTime > flickerDelay) {

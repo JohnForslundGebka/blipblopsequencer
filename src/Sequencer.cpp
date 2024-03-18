@@ -60,8 +60,8 @@ void Sequencer::rec()
             }
             else if (m_components.buttonLadder.onPress(button) && reading > 0 && reading < 9)
             {
-                m_currentSeq[stepCount] = button; //set the current seq the  value of the button (1-7)
-                tone(BUZZER, m_scales[m_currentScale][button], 200); //play the note
+                m_currentSeq[stepCount] = button-1; //set the current seq the  value of the button (1-7)
+                tone(BUZZER, m_scales[m_currentScale][button-1], 200); //play the note
                 stepCount++;
                 delay(100);
             }
