@@ -1,9 +1,11 @@
+//Sequencer.h
+//This header file contains the Class Sequencer.
+//it contains all the functions and setup for the sequencer
+//playing the sequence, changing the tempo and notes and scale
 #ifndef BLIPBLOPSEQUENCER_SEQUENCER_H
 #define BLIPBLOPSEQUENCER_SEQUENCER_H
 #include "pitches.h"
 #include "HardwareComponents.h"
-
-
 
 class Sequencer {
 private:
@@ -15,7 +17,7 @@ private:
     unsigned long m_lastTime = 0;
     int m_tempo;
     int m_noteLength;
-    HardwareComponents m_components;
+    HardwareComponents m_components;  //struct with classes for controlling the LEDs and reading buttons
 
 
 public:
@@ -25,8 +27,10 @@ public:
     //starts the sequencer
     void play(bool ledsOn);
 
+    //the current Sequence
     int m_currentSeq[8]{0,1,2,3,4,5,6,7};
 
+    //2D array that stores all the possible "scales"
     int m_scales[7][8] = {
             // C Major: C, D, E, F, G, A, B
             {NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4,0},

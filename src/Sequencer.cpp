@@ -1,7 +1,7 @@
 #include "Sequencer.h"
 #include <Arduino.h>
 
-
+//function to play the sequence
 void Sequencer::play(bool ledsOn)
 {
       m_tempo = map(analogRead(1), 0, 1023, 1000, 30); //Read pot 1 and sets tempo  
@@ -9,12 +9,12 @@ void Sequencer::play(bool ledsOn)
       m_noteLength = map(analogRead(2), 0, 1023, 1000, 20); //Read pot 2 and sets note length 
 
       m_nowTime = millis();
-      if(m_nowTime - m_lastTime >= m_tempo)
+      if(m_nowTime - m_lastTime >= m_tempo)   //if enough time has passed, play the next note
       {
           m_lastTime = millis();
           tone(BUZZER, m_scales[m_currentScale][m_currentSeq[m_stepCount]],m_noteLength);
 
-         if(ledsOn) m_components.leds.ledOn(m_stepCount);
+         if(ledsOn) m_components.leds.ledOn(m_stepCount);  //turn on the corresponding LED
           m_stepCount++;
 
           if (m_stepCount==8)
@@ -125,11 +125,11 @@ void Sequencer::deleteMode()
 {
     int buzz = 1000;
     for(int i = 0; i < 8; i++) {
-        m_currentSeq[i] = 0;
+        m_currentSeq[i] = 0; //set all the steps to 0
         m_components.leds.ledOn(i);
         tone(BUZZER, buzz, 100);
         buzz = buzz - 100;
         delay(150);
     }
-    m_components.leds.ledOn(13);
+    m_components.leds.ledOn(13); //turn off all the LEDS
 }
