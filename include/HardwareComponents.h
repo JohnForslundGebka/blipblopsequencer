@@ -16,5 +16,4 @@ struct HardwareComponents {
     HardwareComponents() : buttonLadder(0), button1(2) {}
 };
 
-
 #endif //BLIPBLOPSEQUENCER_HARDWARECOMPONENTS_H

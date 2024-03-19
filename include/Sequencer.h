@@ -12,13 +12,11 @@ private:
     const unsigned int BUZZER = 13;
     int m_stepCount = 1;
 
-
     unsigned long m_nowTime = 0;
     unsigned long m_lastTime = 0;
     int m_tempo;
     int m_noteLength;
     HardwareComponents m_components;  //struct with classes for controlling the LEDs and reading buttons
-
 
 public:
     int m_currentScale = 3;

@@ -126,7 +126,6 @@ void LedRow::ledOn(int ledNum)
         default:
             break;
     };
-
 }
 
 //overloaded function that turns on two LEDS

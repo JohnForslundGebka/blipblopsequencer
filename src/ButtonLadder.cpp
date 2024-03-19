@@ -2,12 +2,9 @@
 #include <Arduino.h>
 
 
-uint8_t ButtonLadder::buttonLadder()
-{
+uint8_t ButtonLadder::buttonLadder() {
     //reads value from the resistor ladder, only used privately for the read() function.
     int buttonReadValue = analogRead(m_pinNumber);
-
-
 
     if (buttonReadValue > 100) {
         if (buttonReadValue < 200) return 1;
@@ -19,12 +16,10 @@ uint8_t ButtonLadder::buttonLadder()
         else if (buttonReadValue > 1000) return 7;
     }
     return 0;
-    
 }
 
 //Reads the button ladder with debounce and returns the button number. No button pressed returns 0.
-uint8_t ButtonLadder::read()
-{
+uint8_t ButtonLadder::read() {
    uint8_t reading = buttonLadder();
 
     if ((millis() - m_lastDebounceTime) > m_debounceTime)
@@ -53,8 +48,7 @@ uint8_t ButtonLadder::read()
 
 //function that detects a buttonpress. Also changed the argument (input value)
 // to the number of the button being pressed
-bool ButtonLadder::onPress(uint8_t &button)
-{
+bool ButtonLadder::onPress(uint8_t &button) {
     if (m_pressedButton != 0)
     {
         button = m_pressedButton;
@@ -64,8 +58,7 @@ bool ButtonLadder::onPress(uint8_t &button)
     return false;
 }
 
-bool ButtonLadder::onRelease(uint8_t &button)
-{
+bool ButtonLadder::onRelease(uint8_t &button) {
     if (m_releasedButton != 0)
     {
         button = m_releasedButton;
@@ -75,8 +68,7 @@ bool ButtonLadder::onRelease(uint8_t &button)
     return false;
 }
 
-bool ButtonLadder::isPressed(uint8_t &button)
-{
+bool ButtonLadder::isPressed(uint8_t &button) {
     if (m_buttonState != 0) {
         button = m_buttonState; // Return the button number being pressed
         return true;

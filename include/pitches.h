@@ -1,7 +1,6 @@
 //ptches.h
 //Stores all the possible musical notes, represented as int values used by the tone function
 
-
 #ifndef BLIPBLOPSEQUENCER_PITCHES_H
 #define BLIPBLOPSEQUENCER_PITCHES_H
 #define NOTE_B0  31
@@ -93,6 +92,5 @@
 #define NOTE_CS8 4435
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
-
 
 #endif //BLIPBLOPSEQUENCER_PITCHES_H

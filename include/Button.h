@@ -16,7 +16,6 @@ private:
     unsigned long m_lastDebounceTime = 0;
     const unsigned long m_debounceTime = 50;
 
-
 public:
     //Constructor
     Button(int unsigned digitalPin) :m_status(0), m_digitalPin(digitalPin)

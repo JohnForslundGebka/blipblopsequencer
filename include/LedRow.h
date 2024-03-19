@@ -25,15 +25,6 @@ public:
 
     //function for turning on two LEDS at once
     void ledOn(int led1, int led2);
-
-
-
-
-
-
-
-
 };
-
 
 #endif //BLIPBLOPSEQUENCER_LEDROW_H

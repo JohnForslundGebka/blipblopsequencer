@@ -17,7 +17,6 @@ private:
     // Button that has been pressed
     uint8_t m_releasedButton = 0;     // Button that has been released
 
-
 public:
     //Constructor
     ButtonLadder(int analogPin) : m_pinNumber(analogPin) {}
@@ -36,8 +35,6 @@ public:
     uint8_t m_buttonState = 0;
     uint8_t m_pressedButton = 0;
 
-
 };
-
 
 #endif //BLIPBLOPSEQUENCER_BUTTONLADDER_H
